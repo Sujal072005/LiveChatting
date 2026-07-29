@@ -1,0 +1,359 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	body {
+		font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+		background: 
+			radial-gradient(circle at 15% 25%, rgba(99, 102, 241, 0.15), transparent 35%),
+			radial-gradient(circle at 85% 75%, rgba(236, 72, 153, 0.15), transparent 35%),
+			radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1), transparent 50%),
+			linear-gradient(135deg, #090d16 0%, #111827 50%, #0c1220 100%);
+		background-attachment: fixed;
+		color: #f3f4f6;
+		min-height: 100vh;
+		margin: 0;
+		overflow-x: hidden;
+	}
+}
+
+/* ========================================
+   FLOATING ANIMATED BACKGROUND ORBS
+   ======================================== */
+.floating-orb {
+	position: fixed;
+	border-radius: 50%;
+	filter: blur(80px);
+	opacity: 0.4;
+	pointer-events: none;
+	z-index: 0;
+	will-change: transform;
+}
+
+.orb-1 {
+	width: 400px;
+	height: 400px;
+	background: radial-gradient(circle, rgba(99, 102, 241, 0.5) 0%, transparent 70%);
+	top: -100px;
+	left: -80px;
+	animation: floatOrb1 18s ease-in-out infinite;
+}
+
+.orb-2 {
+	width: 350px;
+	height: 350px;
+	background: radial-gradient(circle, rgba(236, 72, 153, 0.45) 0%, transparent 70%);
+	bottom: -60px;
+	right: -60px;
+	animation: floatOrb2 22s ease-in-out infinite;
+}
+
+.orb-3 {
+	width: 300px;
+	height: 300px;
+	background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
+	top: 40%;
+	left: 50%;
+	animation: floatOrb3 15s ease-in-out infinite;
+}
+
+@keyframes floatOrb1 {
+	0%, 100% { transform: translate(0, 0) scale(1); }
+	25% { transform: translate(60px, 40px) scale(1.1); }
+	50% { transform: translate(20px, 80px) scale(0.95); }
+	75% { transform: translate(-30px, 30px) scale(1.05); }
+}
+
+@keyframes floatOrb2 {
+	0%, 100% { transform: translate(0, 0) scale(1); }
+	25% { transform: translate(-50px, -30px) scale(1.08); }
+	50% { transform: translate(-20px, -70px) scale(0.92); }
+	75% { transform: translate(40px, -20px) scale(1.04); }
+}
+
+@keyframes floatOrb3 {
+	0%, 100% { transform: translate(-50%, 0) scale(1); }
+	33% { transform: translate(-40%, 50px) scale(1.12); }
+	66% { transform: translate(-60%, -40px) scale(0.9); }
+}
+
+/* ========================================
+   PAGE TRANSITION ANIMATIONS
+   ======================================== */
+.page-transition {
+	animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(24px) scale(0.97);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+/* ========================================
+   MESSAGE BUBBLE ENTRANCE ANIMATIONS
+   ======================================== */
+.msg-enter-right {
+	animation: slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.msg-enter-left {
+	animation: slideInLeft 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideInRight {
+	from {
+		opacity: 0;
+		transform: translateX(20px) scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0) scale(1);
+	}
+}
+
+@keyframes slideInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-20px) scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0) scale(1);
+	}
+}
+
+/* ========================================
+   CUSTOM PREMIUM SCROLLBAR
+   ======================================== */
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: rgba(15, 23, 42, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba(99, 102, 241, 0.4);
+	border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(99, 102, 241, 0.7);
+}
+
+/* ========================================
+   PREMIUM GLASS CARD UTILITY
+   ======================================== */
+.glass-panel {
+	background: rgba(15, 23, 42, 0.75);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(99, 102, 241, 0.05);
+}
+
+/* ========================================
+   GLOW BUTTON HOVER EFFECT
+   ======================================== */
+.glow-button {
+	position: relative;
+	transition: all 0.3s ease;
+}
+
+.glow-button:hover {
+	box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+	transform: translateY(-1px);
+}
+
+/* ========================================
+   SHAKE ANIMATION ON HORIZONTAL DIRECTION
+   ======================================== */
+.shake {
+	animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.2s both;
+	transform: translate3d(0, 0, 0);
+	backface-visibility: hidden;
+	perspective: 1000px;
+}
+
+@keyframes shake {
+	10%, 90% { transform: translate3d(-1px, 0, 0); }
+	20%, 80% { transform: translate3d(2px, 0, 0); }
+	30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+	40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* ========================================
+   SCROLL TO BOTTOM BUTTON
+   ======================================== */
+.scroll-to-bottom-btn {
+	animation: fadeInUp 0.3s ease both;
+	transition: all 0.2s ease;
+}
+
+.scroll-to-bottom-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 0 16px rgba(99, 102, 241, 0.5);
+}
+
+/* ========================================
+   EMOJI PICKER
+   ======================================== */
+.emoji-picker-popup {
+	animation: emojiPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes emojiPopIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px) scale(0.9);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+/* ========================================
+   REACTION BAR
+   ======================================== */
+.reaction-bar {
+	animation: emojiPopIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.reaction-pill {
+	transition: all 0.15s ease;
+}
+
+.reaction-pill:hover {
+	transform: scale(1.15);
+}
+
+/* ========================================
+   PROFILE DRAWER
+   ======================================== */
+.profile-drawer-overlay {
+	animation: fadeIn 0.2s ease both;
+}
+
+.profile-drawer-panel {
+	animation: slideInFromLeft 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+	from { opacity: 0; transform: translateX(-100%); }
+	to { opacity: 1; transform: translateX(0); }
+}
+
+/* ========================================
+   GROUP MODAL
+   ======================================== */
+.modal-overlay {
+	animation: fadeIn 0.2s ease both;
+}
+
+.modal-panel {
+	animation: fadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ========================================
+   IMAGE PREVIEW
+   ======================================== */
+.image-preview-enter {
+	animation: fadeInUp 0.3s ease both;
+}
+
+.message-image {
+	transition: all 0.2s ease;
+	cursor: pointer;
+}
+
+.message-image:hover {
+	transform: scale(1.02);
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   LIGHT THEME OVERRIDES
+   ======================================== */
+.theme-light body,
+.theme-light {
+	background:
+		radial-gradient(circle at 15% 25%, rgba(99, 102, 241, 0.08), transparent 35%),
+		radial-gradient(circle at 85% 75%, rgba(236, 72, 153, 0.08), transparent 35%),
+		linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+	color: #1e293b;
+}
+
+.theme-light .glass-panel {
+	background: rgba(255, 255, 255, 0.8);
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1), 0 0 30px rgba(99, 102, 241, 0.03);
+}
+
+.theme-light .floating-orb {
+	opacity: 0.15;
+}
+
+/* Light theme text overrides */
+.theme-light .text-slate-100 { color: #1e293b; }
+.theme-light .text-slate-200 { color: #334155; }
+.theme-light .text-slate-300 { color: #475569; }
+.theme-light .text-slate-400 { color: #64748b; }
+.theme-light .text-white { color: #0f172a; }
+.theme-light .placeholder-slate-400::placeholder { color: #94a3b8; }
+.theme-light .placeholder-slate-500::placeholder { color: #94a3b8; }
+
+/* Light theme input and container overrides */
+.theme-light .bg-slate-900\/40,
+.theme-light .bg-slate-900\/60 {
+	background: rgba(248, 250, 252, 0.9) !important;
+}
+
+.theme-light .bg-slate-950\/20 {
+	background: rgba(241, 245, 249, 0.5) !important;
+}
+
+.theme-light .bg-slate-800\/60,
+.theme-light .bg-slate-800\/70,
+.theme-light .bg-slate-800\/80 {
+	background: rgba(241, 245, 249, 0.9) !important;
+}
+
+.theme-light .border-slate-700\/50,
+.theme-light .border-slate-700\/60,
+.theme-light .border-slate-700\/80,
+.theme-light .border-slate-800 {
+	border-color: rgba(203, 213, 225, 0.6) !important;
+}
+
+/* Light theme sidebar and chat */
+.theme-light .bg-slate-800\/90 {
+	background: rgba(241, 245, 249, 0.95) !important;
+}
+
+.theme-light .hover\:bg-slate-800\/60:hover {
+	background: rgba(226, 232, 240, 0.6) !important;
+}
+
+/* Light scrollbar */
+.theme-light ::-webkit-scrollbar-track {
+	background: rgba(241, 245, 249, 0.8);
+}
+
+.theme-light ::-webkit-scrollbar-thumb {
+	background: rgba(99, 102, 241, 0.3);
+}
